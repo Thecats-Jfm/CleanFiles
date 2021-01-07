@@ -4,8 +4,11 @@ import shutil
 def File_list(file_path):
     file_list = []
     for root,dirs,files in os.walk(file_path):
+        if(len(files)+len(dirs)==0):
+            print("delete empty fold:",root)
+            os.rmdir(root)
         for file in files:
-            file_list.append(root+r'\\'+file)
+            file_list.append(root+'\\'+file)
     return file_list
 def CalcSha1(filepath):
     with open(filepath,'rb') as f:
